@@ -54,16 +54,6 @@ set mailcap_path = "~/.config/neomutt/mailcap:~/.mailcap"
 # Don't prompt "Press any key to continue" when returning from an external program
 set wait_key = no
 
-# -----------------------------
-# IMAP Configuration for Horde
-# -----------------------------
-set imap_user = "michi.lang@bavarian-caps.de"
-set imap_pass = "`pass show email/michi.lang@bavarian-caps.de`"
-set spoolfile = "imaps://bavarian-caps.de/INBOX"
-set folder = "imaps://bavarian-caps.de/"
-set postponed = "+INBOX/Drafts"
-set record = "+INBOX/Sent"
-set mbox = "+INBOX/Trash"
 
 # SSL/TLS for IMAP
 set ssl_starttls = yes

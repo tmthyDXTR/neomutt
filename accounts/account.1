@@ -1,11 +1,14 @@
 # Account 1 - Bavarian Caps
 set imap_user  = "michi.lang@bavarian-caps.de"
 set imap_pass  = "`pass show email/michi.lang@bavarian-caps.de`"
-set smtp_url   = "smtps://bavarian-caps.de:465/"
+set smtp_url   = "smtps://michi.lang@bavarian-caps.de:465/"
 set smtp_pass  = "`pass show email/michi.lang@bavarian-caps.de`"
+set smtp_authenticators = "plain:login"
+
+# Sender Identity Defaults
 set realname   = "Michael Lang"
 set from       = "michi.lang@bavarian-caps.de"
-
+set use_from   = yes
 
 # -----------------------------
 # IMAP Configuration for Horde
@@ -43,3 +46,7 @@ set mbox      = "+Trash"
 
 # 3. Explicitly define the mailboxes for the sidebar using dots
 mailboxes =INBOX =Sent =Drafts =Trash
+
+
+# Press 'a1': Add signature for external bc mails
+macro compose a1 "<attach-file>~/.config/neomutt/signatures/michi.extern.bc.sig<enter>" "Send to extern"
