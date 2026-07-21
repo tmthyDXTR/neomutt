@@ -1,0 +1,45 @@
+# Account 1 - Bavarian Caps
+set imap_user  = "michi.lang@bavarian-caps.de"
+set imap_pass  = "`pass show email/michi.lang@bavarian-caps.de`"
+set smtp_url   = "smtps://bavarian-caps.de:465/"
+set smtp_pass  = "`pass show email/michi.lang@bavarian-caps.de`"
+set realname   = "Michael Lang"
+set from       = "michi.lang@bavarian-caps.de"
+
+
+# -----------------------------
+# IMAP Configuration for Horde
+# -----------------------------
+set imap_user = "michi.lang@bavarian-caps.de"
+set imap_pass = "`pass show email/michi.lang@bavarian-caps.de`"
+set spoolfile = "imaps://bavarian-caps.de/INBOX"
+set folder = "imaps://bavarian-caps.de/"
+set postponed = "+INBOX/Drafts"
+set record = "+INBOX/Sent"
+set mbox = "+INBOX/Trash"
+
+# -----------------------------
+# Mailbox Monitoring
+# -----------------------------
+
+# Reset Sidebar State completely
+unmailboxes *
+
+# Automatically pull all subscribed folders from the IMAP server into the sidebar
+set imap_check_subscribed = yes
+
+# mailboxes ! +[Horde]/INBOX +[Horde]/Sent +[Horde]/Drafts +[Horde]/Trash
+
+
+
+
+# 1. Force NeoMutt to use a dot delimiter instead of a slash
+set imap_delim_chars = "."
+
+# 2. Update your mailboxes using dots instead of slashes
+set postponed = "+Drafts"
+set record    = "+Sent"
+set mbox      = "+Trash"
+
+# 3. Explicitly define the mailboxes for the sidebar using dots
+mailboxes =INBOX =Sent =Drafts =Trash

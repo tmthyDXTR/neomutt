@@ -1,0 +1,13 @@
+text/html; ~/.local/bin/viewhtmlmsg -w 10 --fork < %s; test=test -n "$DISPLAY"; copiousoutput
+
+# HTML Handler
+#text/html; ~/.config/neomutt/open_firefox.sh %s; nametemplate=%s.html; needsterminal
+
+# IrfanView Handlers
+image/*; ~/.config/neomutt/open_irfanview.sh %s; needsterminal
+application/pdf; ~/.config/neomutt/open_irfanview.sh %s; needstermina
+
+# Excel / Spreadsheet Handlers
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; ~/.config/neomutt/open_excel.sh %s; needsterminal
+application/vnd.ms-excel; ~/.config/neomutt/open_excel.sh %s; needsterminal
+application/octet-stream; ~/.config/neomutt/open_excel.sh %s; needsterminal

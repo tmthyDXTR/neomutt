@@ -1,0 +1,47 @@
+# =============================================
+# Account 2 - Supacoda (Merged Inboxes & Aliases)
+# =============================================
+
+# Connection Credentials (Primary Login)
+set imap_user  = "info@supacoda.de"
+set imap_pass  = "`pass show email/info@supacoda.de`"
+set smtp_url   = "smtps://info@supacoda.de@mail.supacoda.de:465/"
+set smtp_pass  = "`pass show email/info@supacoda.de`"
+
+# Base Sender Identity Defaults
+set realname   = ""
+set from       = "info@supacoda.de"
+
+# Default MIME Attachment Signature Settings
+set sig_dashes = yes
+set sig_on_top = no
+#set signature  = "~/.config/neomutt/signatures/info.supacoda.sig"
+
+# Define all email addresses associated with this account
+alternates "^(info|mlang)@supacoda\.de$"
+set reverse_name = yes
+
+# Reset Sidebar State completely
+unmailboxes *
+
+# Server Root & Delimiter
+set imap_delim_chars = "."
+set folder     = "imaps://mail.supacoda.de:993/"
+
+# Mailbox Server Paths
+set spoolfile  = "+INBOX"
+set postponed  = "+INBOX.Drafts"
+set record     = "+INBOX.Sent"
+set mbox       = "+INBOX.Trash"
+
+# Populate Sidebar for Account 2
+mailboxes =INBOX =INBOX.Sent =INBOX.Drafts =INBOX.Trash
+
+# -----------------------------
+# Quick Alias Toggle Macros (In Compose Screen)
+# -----------------------------
+# Press 'a1': Switch From to info@, swap signature attachment to info.supacoda.sig
+macro compose a1 "<enter-command>unmy_hdr From; my_hdr From: info@supacoda.de<enter><attach-file>~/.config/neomutt/signatures/info.supacoda.sig<enter>" "Send as info@ (Company)"
+
+# Press 'a2': Switch From to Michael Lang <mlang@>, swap signature attachment to mlang.supacoda.sig
+macro compose a2 "<enter-command>unmy_hdr From; my_hdr From: Michael Lang <mlang@supacoda.de><enter><attach-file>~/.config/neomutt/signatures/mlang.supacoda.sig<enter>" "Send as Michael Lang (Company Personal)"
