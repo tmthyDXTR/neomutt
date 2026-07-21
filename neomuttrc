@@ -176,7 +176,7 @@ macro index,pager V "<pipe-message>~/.local/bin/viewhtmlmsg -w 10 --fork<enter>"
 # Local Overrides
 # -----------------------------
 # THEME rc
-source "~/.config/neomutt/Gruvbox Dark.rc"
+source "~/.config/neomutt/themes/Gruvbox Dark.rc"
 
 # -----------------------------
 # Multi-Account Switcher
