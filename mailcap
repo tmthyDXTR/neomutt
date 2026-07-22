@@ -1,4 +1,6 @@
-text/html; ~/.local/bin/viewhtmlmsg -w 10 --fork < %s; test=test -n "$DISPLAY"; copiousoutput
+text/html; w3m -dump -T text/html; copiousoutput
+#text/html; ~/.local/bin/viewhtmlmsg -w 10 --fork; copiousoutput
+#text/html; ~/.local/bin/viewhtmlmsg -w 10 --fork < %s; test=test -n "$DISPLAY"; copiousoutput; needsterminal
 
 # HTML Handler
 #text/html; ~/.config/neomutt/open_firefox.sh %s; nametemplate=%s.html; needsterminal

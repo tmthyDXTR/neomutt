@@ -50,6 +50,7 @@ auto-view text/html
 alternative_order text/plain text/html
 
 set mailcap_path = "~/.config/neomutt/mailcap:~/.mailcap"
+set mailcap_sanitize = yes
 
 # Don't prompt "Press any key to continue" when returning from an external program
 set wait_key = no
@@ -172,7 +173,7 @@ source "~/.config/neomutt/themes/Gruvbox Dark.rc"
 # Multi-Account Switcher
 # -----------------------------
 macro index,pager i1 "<sync-mailbox><change-folder>!<enter><enter-command>source ~/.config/neomutt/accounts/account.1<enter><change-folder>!<enter>" "Switch to Bavarian Caps"
-macro index,pager i2 "<sync-mailbox><change-folder>!<enter><enter-command>source ~/.config/neomutt/accounts/account.2<enter><change-folder>!<enter>" "Switch to Supacoda"
+#macro index,pager i2 "<sync-mailbox><change-folder>!<enter><enter-command>source ~/.config/neomutt/accounts/account.2<enter><change-folder>!<enter>" "Switch to Supacoda"
 
 # Default account to load on launch
 source ~/.config/neomutt/accounts/account.1
