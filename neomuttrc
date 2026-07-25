@@ -42,11 +42,10 @@ set message_cachedir = "~/.cache/neomutt/messages/"
 # Tell NeoMutt to query abook for addresses
 set query_command = "abook --mutt-query '%s'"
 
-# Optional: Automatically open the query menu when you press Tab in address prompts
-# (By default, NeoMutt uses Tab for its local alias file and Ctrl+T for external queries)
-bind editor <Tab> complete-query
+# Use Ctrl+T for abook address completion (Tab is reserved for folder completion)
+bind editor ^T complete-query
 
-auto-view text/html
+auto_view text/html
 alternative_order text/plain text/html
 
 set mailcap_path = "~/.config/neomutt/mailcap:~/.mailcap"
@@ -62,6 +61,10 @@ set ssl_force_tls = yes
 set ssl_verify_host = no
 set ssl_verify_dates = no
 
+# IMAP folder browsing
+set imap_passive = no
+set imap_list_subscribed = yes
+
 # -----------------------------
 # Display and Formatting
 # -----------------------------
@@ -70,6 +73,10 @@ set arrow_cursor = no
 set noconfirmappend
 set print_command = /bin/false
 set noprompt_after
+
+# Folder browser settings
+set folder_format = "%2C %t %N %8s %d %f"
+set mask = "!^\\.[^.]"
 
 # -----------------------------
 # Sidebar Configuration
@@ -134,11 +141,21 @@ bind generic } bottom-page
 bind generic \177 last-entry
 bind pager G bottom
 
+
+bind compose a noop
+
 macro index \cb "<pipe-message> urlview<Enter>"
 macro index,pager S "<save-message>+spam<Enter>"
 
-# Clear pre-filled sender name when saving/moving an email
-macro index,pager s "<save-message>^U=" "Save/move message to folder"
+# Press Tab to autocomplete or Ctrl+Space to browse
+#macro index \;s "<tag-prefix-cond><save-message>\Cu=" "Save tagged messages to folder"
+
+# Alternative: Ctrl+S to save tagged with folder browser
+#macro index \Cs "<tag-prefix-cond><save-message>?<toggle-mailboxes>" "Browse and save tagged messages
+#macro index,pager s "<save-message>^U=" "Save/move message to folder"
+
+# Save tagged messages - clear default and start with =
+#macro index \;s "<tag-prefix-cond><save-message>\Cu=" "Save tagged messages to folder"
 
 # Press Ctrl+i to jump straight to the current account's INBOX
 bind index,pager \Ci change-folder
@@ -172,8 +189,12 @@ source "~/.config/neomutt/themes/Gruvbox Dark.rc"
 # -----------------------------
 # Multi-Account Switcher
 # -----------------------------
-macro index,pager i1 "<sync-mailbox><change-folder>!<enter><enter-command>source ~/.config/neomutt/accounts/account.1<enter><change-folder>!<enter>" "Switch to Bavarian Caps"
-#macro index,pager i2 "<sync-mailbox><change-folder>!<enter><enter-command>source ~/.config/neomutt/accounts/account.2<enter><change-folder>!<enter>" "Switch to Supacoda"
+# Press Alt+1, Alt+2, Alt+3, Alt+4 to switch between accounts
+macro index,pager \e1 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.1<enter><change-folder>!<enter>" "Switch to Bavarian Caps"
+macro index,pager \e2 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.2<enter><change-folder>!<enter>" "Switch to Supacoda (mlang)"
+macro index,pager \e3 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.3<enter><change-folder>!<enter>" "Switch to Supacoda (info)"
+macro index,pager \e4 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.4<enter><change-folder>!<enter>" "Switch to AAA Tickets"
+
 
 # Default account to load on launch
-source ~/.config/neomutt/accounts/account.1
+source ~/.config/neomutt/accounts/account.2

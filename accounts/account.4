@@ -1,0 +1,29 @@
+# Account 4 - AAA Tickets
+
+# Connection Credentials
+set imap_user  = "tickets@agratamagatha.de"
+set imap_pass  = "`pass show email/tickets@agratamagatha.de`"
+set smtp_url   = "smtps://tickets@agratamagatha.de@vs-80.webhoster.ag:465/"
+set smtp_pass  = "`pass show email/tickets@agratamagatha.de`"
+
+# Sender Identity Defaults
+set realname   = ""
+set from       = "tickets@agratamagatha.de"
+set use_from   = yes
+
+# IMAP Configuration
+set imap_delim_chars = "."
+set folder = "imaps://vs-80.webhoster.ag:993/"
+set spoolfile = "+INBOX"
+set postponed = "+Drafts"
+set record = "+Sent"
+set mbox = "+Trash"
+
+# Automatically discover folders from IMAP server
+set imap_check_subscribed = yes
+
+# Reset Sidebar State completely
+unmailboxes *
+
+# Explicitly define the mailboxes for the sidebar
+mailboxes =INBOX =Sent =Drafts =Trash

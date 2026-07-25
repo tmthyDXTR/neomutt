@@ -1,21 +1,21 @@
 # =============================================
-# Account 2 - Supacoda (mlang@)
+# Account 3 - Supacoda (info@)
 # =============================================
 
 # Connection Credentials (Primary Login)
-set imap_user  = "mlang@supacoda.de"
-set imap_pass  = "`pass show email/mlang@supacoda.de`"
-set smtp_url   = "smtps://mlang@supacoda.de@mail.supacoda.de:465/"
-set smtp_pass  = "`pass show email/mlang@supacoda.de`"
+set imap_user  = "info@supacoda.de"
+set imap_pass  = "`pass show email/info@supacoda.de`"
+set smtp_url   = "smtps://info@supacoda.de@mail.supacoda.de:465/"
+set smtp_pass  = "`pass show email/info@supacoda.de`"
 
 # Base Sender Identity Defaults
-set realname   = "Michael Lang"
-set from       = "mlang@supacoda.de"
+set realname   = ""
+set from       = "info@supacoda.de"
 
 # Default MIME Attachment Signature Settings
 set sig_dashes = yes
 set sig_on_top = no
-#set signature  = "~/.config/neomutt/signatures/mlang.supacoda.sig"
+#set signature  = "~/.config/neomutt/signatures/info.supacoda.sig"
 
 # Define all email addresses associated with this account
 alternates "^(info|mlang)@supacoda\.de$"
@@ -23,7 +23,7 @@ set reverse_name = yes
 
 # IMAP hierarchy
 set imap_delim_chars = "/"
-set folder = "imaps://mlang@supacoda.de@mail.supacoda.de:993/"
+set folder = "imaps://info@supacoda.de@mail.supacoda.de:993/"
 
 # Mailbox Server Paths (namespace expects INBOX/<folder>)
 set spoolfile  = "+INBOX"
@@ -34,5 +34,6 @@ set mbox       = "+INBOX/Trash"
 # Reset Sidebar State completely
 unmailboxes *
 
-# Explicitly list all folders for mlang@ account
+# Explicitly list all folders for info@ account
+# Add your custom folders here (e.g., =INBOX/YourCustomFolder)
 mailboxes =INBOX =INBOX/Drafts =INBOX/Sent =INBOX/Junk =INBOX/Trash =INBOX/Archive
