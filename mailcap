@@ -13,33 +13,4 @@ application/pdf; ~/.config/neomutt/open_irfanview.sh %s; needstermina
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; ~/.config/neomutt/open_excel.sh %s; needsterminal
 application/vnd.ms-excel; ~/.config/neomutt/open_excel.sh %s; needsterminal
 application/octet-stream; ~/.config/neomutt/open_excel.sh %s; needsterminal
-From mlang@supacoda.de Tue Jul 21 19:06:06 2026
-Return-Path: <mlang@supacoda.de>
-Received: from s13612.fra1.stableserver.net
-	by s13612.fra1.stableserver.net with LMTP
-	id 2Y/MF/6mX2oVuykA242+gQ
-	(envelope-from <mlang@supacoda.de>); Tue, 21 Jul 2026 17:06:06 +0000
-Return-path: <mlang@supacoda.de>
-Envelope-to: info@supacoda.de
-Delivery-date: Tue, 21 Jul 2026 17:06:06 +0000
-Received: from [92.211.155.190] (port=6745 helo=arch-thinkpad)
-	by s13612.fra1.stableserver.net with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.99.4)
-	(envelope-from <mlang@supacoda.de>)
-	id 1wmDuy-0000000BTQA-09mP
-	for info@supacoda.de;
-	Tue, 21 Jul 2026 17:06:06 +0000
-Date: Tue, 21 Jul 2026 19:06:04 +0200
-From: mlang@supacoda.de
-To: info@supacoda.de
-Subject: test3
-Message-ID: <al-m8OWUbTMEaFYL@arch-thinkpad>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Status: RO
-Content-Length: 0
-Lines: 0
-Tags: Junk
-
 

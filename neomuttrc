@@ -32,7 +32,7 @@ set save_name = no
 set force_name = no
 
 auto_view text/html
-alternative_order text/plain text/enriched text/html
+alternative_order text/html text/enriched text/plain 
 
 
 set header_cache_backend = "lmdb"
@@ -45,8 +45,6 @@ set query_command = "abook --mutt-query '%s'"
 # Use Ctrl+T for abook address completion (Tab is reserved for folder completion)
 bind editor ^T complete-query
 
-auto_view text/html
-alternative_order text/plain text/html
 
 set mailcap_path = "~/.config/neomutt/mailcap:~/.mailcap"
 set mailcap_sanitize = yes
@@ -66,13 +64,27 @@ set imap_passive = no
 set imap_list_subscribed = yes
 
 # -----------------------------
+# Default Account (must be set before status_format uses it)
+# -----------------------------
+set my_account = "Bavarian Caps"
+source ~/.config/neomutt/accounts/account.1
+
+
+# -----------------------------
 # Display and Formatting
 # -----------------------------
 set index_format = "%4C %Z %{%m/%d} %-15.15F (%4c) %s"
+set status_format = "───[$my_account]─%f [Msgs:%?M?%M/?%m%?n? New:%n?] %>─%?p?(%p postponed)?"
 set arrow_cursor = no
 set noconfirmappend
 set print_command = /bin/false
 set noprompt_after
+
+# Keep status bar account label in sync no matter how a mailbox gets opened
+folder-hook 'bavarian-caps\.de' 'set my_account="Bavarian Caps"; set status_format="───[$my_account]─%f [Msgs:%?M?%M/?%m%?n? New:%n?] %>─%?p?(%p postponed)?"'
+folder-hook 'mlang@supacoda\.de' 'set my_account="Supacoda (mlang)"; set status_format="───[$my_account]─%f [Msgs:%?M?%M/?%m%?n? New:%n?] %>─%?p?(%p postponed)?"'
+folder-hook 'info@supacoda\.de' 'set my_account="Supacoda (info)"; set status_format="───[$my_account]─%f [Msgs:%?M?%M/?%m%?n? New:%n?] %>─%?p?(%p postponed)?"'
+folder-hook 'agratamagatha\.de' 'set my_account="AAA Tickets"; set status_format="───[$my_account]─%f [Msgs:%?M?%M/?%m%?n? New:%n?] %>─%?p?(%p postponed)?"'
 
 # Folder browser settings
 set folder_format = "%2C %t %N %8s %d %f"
@@ -142,7 +154,7 @@ bind generic \177 last-entry
 bind pager G bottom
 
 
-bind compose a noop
+#bind compose a noop
 
 macro index \cb "<pipe-message> urlview<Enter>"
 macro index,pager S "<save-message>+spam<Enter>"
@@ -180,6 +192,12 @@ bind index,pager \Ch sidebar-open
 # Press 'V' in index or pager to pipe the ENTIRE email to viewhtmlmsg
 macro index,pager V "<pipe-message>~/.local/bin/viewhtmlmsg -w 10 --fork<enter>" "Open HTML email with images in browser"
 
+# Press 'Ctrl+e' in the compose menu to load external signature
+macro compose \Ce ":set signature='~/.config/neomutt/signatures/michi.extern.bc.sig'<enter>" "Set external signature"
+
+# Press 'Ctrl+s' in the compose menu to load internal (no sig)
+macro compose \Cs ":set signature=''<enter>" "Remove signature"
+
 # -----------------------------
 # Local Overrides
 # -----------------------------
@@ -189,12 +207,13 @@ source "~/.config/neomutt/themes/Gruvbox Dark.rc"
 # -----------------------------
 # Multi-Account Switcher
 # -----------------------------
-# Press Alt+1, Alt+2, Alt+3, Alt+4 to switch between accounts
+# Press Alt+1 ... Alt+5 to switch between accounts
 macro index,pager \e1 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.1<enter><change-folder>!<enter>" "Switch to Bavarian Caps"
 macro index,pager \e2 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.2<enter><change-folder>!<enter>" "Switch to Supacoda (mlang)"
 macro index,pager \e3 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.3<enter><change-folder>!<enter>" "Switch to Supacoda (info)"
 macro index,pager \e4 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.4<enter><change-folder>!<enter>" "Switch to AAA Tickets"
+# account.5 file not found in accounts/ - folder-hook and macro left as manual fallback
+macro index,pager \e5 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.5<enter><enter-command>set my_account='KUReV (Michael.L)'<enter><enter-command>set status_format=\"───[$my_account]─%f [Msgs:%?M?%M/?%m%?n? New:%n?] %>─%?p?(%p postponed)?\"<enter><change-folder>!<enter>" "Switch to KUReV (Michael.L)"
 
 
-# Default account to load on launch
-source ~/.config/neomutt/accounts/account.2
+
