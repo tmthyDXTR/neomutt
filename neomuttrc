@@ -208,10 +208,10 @@ source "~/.config/neomutt/themes/Gruvbox Dark.rc"
 # Multi-Account Switcher
 # -----------------------------
 # Press Alt+1 ... Alt+5 to switch between accounts
-macro index,pager \e1 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.1<enter><change-folder>!<enter>" "Switch to Bavarian Caps"
-macro index,pager \e2 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.2<enter><change-folder>!<enter>" "Switch to Supacoda (mlang)"
-macro index,pager \e3 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.3<enter><change-folder>!<enter>" "Switch to Supacoda (info)"
-macro index,pager \e4 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.4<enter><change-folder>!<enter>" "Switch to AAA Tickets"
+macro index,pager \e1 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.1<enter><change-folder>!<enter><redraw-screen>" "Switch to Bavarian Caps"
+macro index,pager \e3 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.3<enter><change-folder>!<enter><redraw-screen>" "Switch to Supacoda (info)"
+macro index,pager \e2 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.2<enter><change-folder>!<enter><redraw-screen>" "Switch to Supacoda (mlang)"
+macro index,pager \e4 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.4<enter><change-folder>!<enter><redraw-screen>" "Switch to AAA Tickets"
 # account.5 file not found in accounts/ - folder-hook and macro left as manual fallback
 macro index,pager \e5 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.5<enter><enter-command>set my_account='KUReV (Michael.L)'<enter><enter-command>set status_format=\"───[$my_account]─%f [Msgs:%?M?%M/?%m%?n? New:%n?] %>─%?p?(%p postponed)?\"<enter><change-folder>!<enter>" "Switch to KUReV (Michael.L)"
 
