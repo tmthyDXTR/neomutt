@@ -52,6 +52,8 @@ set mailcap_sanitize = yes
 # Don't prompt "Press any key to continue" when returning from an external program
 set wait_key = no
 
+set envelope_from = yes
+
 
 # SSL/TLS for IMAP
 set ssl_starttls = yes
