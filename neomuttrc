@@ -1,221 +1,391 @@
-# =============================================
+ # =============================================
+
 # NeoMutt Configuration for Horde Webmail
+
 # =============================================
 
+
 # -----------------------------
+
 # Core Settings
+
 # -----------------------------
+
 set alias_file = ~/.mail_aliases
+
 set autoedit
+
 set copy = yes
+
 set delete = yes
+
 set edit_headers = no
+
 set include
+
 set mime_forward
+
 set move = yes
+
 set nomark_old
+
 set nouse_domain
+
 set implicit_autoview = yes
+
 set crypt_verify_sig = no
+
 set write_inc = 25
+
 set read_inc = 25
+
 set mail_check = 10
+
 set pager_index_lines = 12
+
 set tilde
+
 set nosave_empty
+
 set reply_to
+
 set reverse_name
+
 set sort = threads
+
 set sort_browser = reverse-date
+
 set sort_aux = last-date-received
+
 set save_name = no
+
 set force_name = no
 
+
 auto_view text/html
+
 alternative_order text/html text/enriched text/plain 
 
 
+
 set header_cache_backend = "lmdb"
+
 set header_cache = "~/.cache/neomutt/headers/"
+
 set message_cachedir = "~/.cache/neomutt/messages/"
 
+
 # Tell NeoMutt to query abook for addresses
+
 set query_command = "abook --mutt-query '%s'"
 
+
 # Use Ctrl+T for abook address completion (Tab is reserved for folder completion)
+
 bind editor ^T complete-query
 
 
+
 set mailcap_path = "~/.config/neomutt/mailcap:~/.mailcap"
+
 set mailcap_sanitize = yes
 
+
 # Don't prompt "Press any key to continue" when returning from an external program
+
 set wait_key = no
+
 
 set envelope_from = yes
 
 
+
 # SSL/TLS for IMAP
+
 set ssl_starttls = yes
+
 set ssl_force_tls = yes
+
 set ssl_verify_host = no
+
 set ssl_verify_dates = no
 
+
 # IMAP folder browsing
+
 set imap_passive = no
+
 set imap_list_subscribed = yes
 
+
 # -----------------------------
+
 # Default Account (must be set before status_format uses it)
+
 # -----------------------------
+
 set my_account = "Bavarian Caps"
+
 source ~/.config/neomutt/accounts/account.1
 
 
+
 # -----------------------------
+
 # Display and Formatting
+
 # -----------------------------
+
 set index_format = "%4C %Z %{%m/%d} %-15.15F (%4c) %s"
+
 set status_format = "───[$my_account]─%f [Msgs:%?M?%M/?%m%?n? New:%n?] %>─%?p?(%p postponed)?"
+
 set arrow_cursor = no
+
 set noconfirmappend
+
 set print_command = /bin/false
+
 set noprompt_after
 
+
 # Keep status bar account label in sync no matter how a mailbox gets opened
+
 folder-hook 'bavarian-caps\.de' 'set my_account="Bavarian Caps"; set status_format="───[$my_account]─%f [Msgs:%?M?%M/?%m%?n? New:%n?] %>─%?p?(%p postponed)?"'
+
 folder-hook 'mlang@supacoda\.de' 'set my_account="Supacoda (mlang)"; set status_format="───[$my_account]─%f [Msgs:%?M?%M/?%m%?n? New:%n?] %>─%?p?(%p postponed)?"'
+
 folder-hook 'info@supacoda\.de' 'set my_account="Supacoda (info)"; set status_format="───[$my_account]─%f [Msgs:%?M?%M/?%m%?n? New:%n?] %>─%?p?(%p postponed)?"'
+
 folder-hook 'agratamagatha\.de' 'set my_account="AAA Tickets"; set status_format="───[$my_account]─%f [Msgs:%?M?%M/?%m%?n? New:%n?] %>─%?p?(%p postponed)?"'
 
+
 # Folder browser settings
+
 set folder_format = "%2C %t %N %8s %d %f"
+
 set mask = "!^\\.[^.]"
 
+
 # -----------------------------
+
 # Sidebar Configuration
+
 # -----------------------------
+
 # Turn the sidebar on
+
 set sidebar_visible = yes
 
+
 # Set sidebar width (number of characters)
+
 set sidebar_width = 24
 
+
 # Format how folders look in the sidebar
+
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?"
 
+
 # Sort sidebar
+
 set sidebar_sort_method = 'alpha'
 
+
 # Shorten paths so "+INBOX/Sent" just shows as "Sent"
+
 set sidebar_short_path = yes
+
 set sidebar_folder_indent = yes
 
+
 # Refresh the sidebar when new mail arrives
+
 set sidebar_new_mail_only = no
 
 
-# -----------------------------
-# Header Handling
-# -----------------------------
-ignore *
-unignore from: subject to cc mail-followup-to date x-mailer x-url
-unhdr_order *
-hdr_order date from subject to cc
 
 # -----------------------------
-# Color and Styling
+
+# Header Handling
+
 # -----------------------------
+
+ignore *
+
+unignore from: subject to cc mail-followup-to date x-mailer x-url
+
+unhdr_order *
+
+hdr_order date from subject to cc
+
+
+# -----------------------------
+
+# Color and Styling
+
+# -----------------------------
+
 color hdrdefault red default
+
 color quoted brightblue default
+
 color signature red default
+
 color indicator brightyellow red
+
 color error brightred default
+
 color status yellow blue
+
 color tree magenta default
+
 color tilde magenta default
+
 color message brightcyan default
+
 color markers brightcyan default
+
 color attachment brightmagenta default
+
 color search default green
+
 color header brightred default ^(From|Subject):
+
 color body magenta default "(ftp|http|https)://[^ ]+"
+
 color body magenta default [-a-z_0-9.]+@[-a-z_0-9.]+
+
 color underline brightgreen default
+
 
 mono quoted bold
 
+
 # -----------------------------
+
 # Key Bindings
+
 # -----------------------------
+
 bind generic "\e<" first-entry
+
 bind generic \e> last-entry
+
 bind generic { top-page
+
 bind generic } bottom-page
+
 bind generic \177 last-entry
+
 bind pager G bottom
+
 
 
 #bind compose a noop
 
+
 macro index \cb "<pipe-message> urlview<Enter>"
+
 macro index,pager S "<save-message>+spam<Enter>"
 
+
 # Press Tab to autocomplete or Ctrl+Space to browse
+
 #macro index \;s "<tag-prefix-cond><save-message>\Cu=" "Save tagged messages to folder"
+
 
 # Alternative: Ctrl+S to save tagged with folder browser
+
 #macro index \Cs "<tag-prefix-cond><save-message>?<toggle-mailboxes>" "Browse and save tagged messages
+
 #macro index,pager s "<save-message>^U=" "Save/move message to folder"
 
+
 # Save tagged messages - clear default and start with =
+
 #macro index \;s "<tag-prefix-cond><save-message>\Cu=" "Save tagged messages to folder"
 
+
 # Press Ctrl+i to jump straight to the current account's INBOX
+
 bind index,pager \Ci change-folder
+
 macro index,pager \Ci "<change-folder>!<enter>" "Jump to INBOX"
+
 
 macro index,pager \e\Cd "<save-message>=2_DONE<enter>" "Move to DONE"
 
+
 # Press 'A' in the index or pager to add the sender's email to abook
+
 macro index,pager A "<pipe-message>abook --add-email-quiet<return>" "Add sender to abook"
 
+
 # Press 'Ctrl+A' to launch the full interactive abook TUI interface
+
 macro generic,index,pager \ca "<shell-escape>abook<return>" "Launch abook"
 
+
 # Use Ctrl+k and Ctrl+j to move up and down, Ctrl+h to open a folder
+
 bind index,pager \Ck sidebar-prev
+
 bind index,pager \Cj sidebar-next
+
 bind index,pager \Ch sidebar-open
 
+
 # Pressing 'V' in the index or pager will open the HTML version of the email in your browser
+
 #macro index,pager V "<view-attachments><search>html<enter><view-mailcap><exit>" "Open HTML in browser"
 
+
 # Press 'V' in index or pager to pipe the ENTIRE email to viewhtmlmsg
+
 macro index,pager V "<pipe-message>~/.local/bin/viewhtmlmsg -w 10 --fork<enter>" "Open HTML email with images in browser"
 
+
 # Press 'Ctrl+e' in the compose menu to load external signature
+
 macro compose \Ce ":set signature='~/.config/neomutt/signatures/michi.extern.bc.sig'<enter>" "Set external signature"
 
+
 # Press 'Ctrl+s' in the compose menu to load internal (no sig)
+
 macro compose \Cs ":set signature=''<enter>" "Remove signature"
 
+macro index o "<shell-escape>mbsync -a<Enter>" "Sync all mail with mbsync"
+
+
 # -----------------------------
+
 # Local Overrides
+
 # -----------------------------
+
 # THEME rc
+
 source "~/.config/neomutt/themes/Gruvbox Dark.rc"
 
+
 # -----------------------------
+
 # Multi-Account Switcher
+
 # -----------------------------
+
 # Press Alt+1 ... Alt+5 to switch between accounts
+
 macro index,pager \e1 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.1<enter><change-folder>!<enter><redraw-screen>" "Switch to Bavarian Caps"
+
 macro index,pager \e3 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.3<enter><change-folder>!<enter><redraw-screen>" "Switch to Supacoda (info)"
+
 macro index,pager \e2 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.2<enter><change-folder>!<enter><redraw-screen>" "Switch to Supacoda (mlang)"
+
 macro index,pager \e4 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.4<enter><change-folder>!<enter><redraw-screen>" "Switch to AAA Tickets"
+
 # account.5 file not found in accounts/ - folder-hook and macro left as manual fallback
-macro index,pager \e5 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.5<enter><enter-command>set my_account='KUReV (Michael.L)'<enter><enter-command>set status_format=\"───[$my_account]─%f [Msgs:%?M?%M/?%m%?n? New:%n?] %>─%?p?(%p postponed)?\"<enter><change-folder>!<enter>" "Switch to KUReV (Michael.L)"
 
-
-
+macro index,pager \e5 "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account.5<enter><enter-command>set my_account='KUReV (Michael.L)'<enter><enter-command>set status_format=\"───[$my_account]─%f [Msgs:%?M?%M/?%m%?n? New:%n?] %>─%?p?(%p postponed)?\"<enter><change-folder>!<enter>" "Switch to KUReV (Michael.L)" 

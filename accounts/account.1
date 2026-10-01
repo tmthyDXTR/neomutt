@@ -1,52 +1,28 @@
-# Account 1 - Bavarian Caps
-set imap_user  = "michi.lang@bavarian-caps.de"
-set imap_pass  = "`pass show email/michi.lang@bavarian-caps.de`"
-set smtp_url   = "smtps://michi.lang@bavarian-caps.de@bavarian-caps.de:465"
-set smtp_pass  = "`pass show email/michi.lang@bavarian-caps.de`"
-
-
-# Sender Identity Defaults
+# Account 1 - Bavarian Caps (Local Maildir Mode)
 set realname   = "Michael Lang"
 set from       = "michi.lang@bavarian-caps.de"
 set use_from   = yes
 
+# SMTP for sending mail directly
+set smtp_url   = "smtps://michi.lang@bavarian-caps.de@bavarian-caps.de:465"
+set smtp_pass  = "`pass show email/michi.lang@bavarian-caps.de`"
+
 # -----------------------------
-# IMAP Configuration for Horde
+# Local Maildir Configuration
 # -----------------------------
-set imap_user = "michi.lang@bavarian-caps.de"
-set imap_pass = "`pass show email/michi.lang@bavarian-caps.de`"
-set spoolfile = "imaps://bavarian-caps.de/INBOX"
-set folder = "imaps://bavarian-caps.de/"
-set postponed = "+INBOX/Drafts"
-set record = "+INBOX/Sent"
-set mbox = "+INBOX/Trash"
+set mbox_type  = Maildir
+set folder     = "~/.local/share/mail/michi.lang@bavarian-caps.de"
+set spoolfile  = "+INBOX"
+set postponed  = "+Drafts"
+set record     = "+Sent"
+set mbox       = "+Trash"
 
 # -----------------------------
 # Mailbox Monitoring
 # -----------------------------
-
-# Reset Sidebar State completely
 unmailboxes *
-
-# Automatically pull all subscribed folders from the IMAP server into the sidebar
-set imap_check_subscribed = yes
-
-# mailboxes ! +[Horde]/INBOX +[Horde]/Sent +[Horde]/Drafts +[Horde]/Trash
+mailboxes =INBOX =1_TODO =2_DONE =3_ng =4_Design =8_IMPORTANT =9_FIN =Drafts =Sent =Junk =Spam =Trash
 
 
-
-
-# 1. Force NeoMutt to use a dot delimiter instead of a slash
-set imap_delim_chars = "."
-
-# 2. Update your mailboxes using dots instead of slashes
-set postponed = "+Drafts"
-set record    = "+Sent"
-set mbox      = "+Trash"
-
-# 3. Explicitly define the mailboxes for the sidebar using dots
-mailboxes =INBOX =Sent =Drafts =Trash
-
-
-# Press 'a1': Add signature for external bc mails
+# Signature macro
 macro compose a1 "<attach-file>~/.config/neomutt/signatures/michi.extern.bc.sig<enter>" "Send to extern"
