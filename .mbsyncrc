@@ -1,0 +1,27 @@
+# -------------------------------------------------------------
+# Bavarian Caps (account.1)
+# -------------------------------------------------------------
+
+# Remote IMAP Account
+IMAPStore bavarian-caps-remote
+Host bavarian-caps.de
+Port 993
+User michi.lang@bavarian-caps.de
+PassCmd "pass show email/michi.lang@bavarian-caps.de"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+# Local Maildir Store
+MaildirStore bavarian-caps-local
+Subfolders Verbatim
+Path ~/.local/share/mail/michi.lang@bavarian-caps.de/
+Inbox ~/.local/share/mail/michi.lang@bavarian-caps.de/INBOX
+
+# Sync Channel
+Channel bavarian-caps
+Far :bavarian-caps-remote:
+Near :bavarian-caps-local:
+Patterns *
+Create Both
+Expunge Both
+SyncState *
